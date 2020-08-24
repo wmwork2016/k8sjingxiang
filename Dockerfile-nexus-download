@@ -1,14 +1,5 @@
-FROM centos
+FROM centos/nginx-112-centos7:20191126-2735d2a
 
-RUN yum install -y wget
+RUN yum install -y wget nginx
 
-RUN mkdir /soft
-RUN mkdir -p /soft/nexus
-WORKDIR /soft
-RUN cd /soft
-RUN wget -P /soft https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-3.26.1-02-unix.tar.gz
-RUN tar -zxvf nexus-3.26.1-02-unix.tar.gz -C /soft/nexus
-
-ENV  NEXUS_HOME=/soft/nexus/nexus-3.26.1-02
-ENV  PATH=$NEXUS_HOME:$PATH
-RUN source /etc/profile
+RUN wget -P /usr/share/nginx/html https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-3.26.1-02-unix.tar.gz
