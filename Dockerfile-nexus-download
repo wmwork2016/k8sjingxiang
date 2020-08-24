@@ -8,3 +8,7 @@ WORKDIR /soft
 RUN cd /soft
 RUN wget -P /soft https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-3.26.1-02-unix.tar.gz
 RUN tar -zxvf nexus-3.26.1-02-unix.tar.gz -C /soft/nexus
+
+ENV  NEXUS_HOME=/soft/nexus/nexus-3.26.1-02
+ENV  PATH=$NEXUS_HOME:$PATH
+RUN source /etc/profile
