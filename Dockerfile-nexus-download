@@ -1,5 +1,15 @@
-FROM centos/nginx-112-centos7:20191126-2735d2a
+FROM centos
 
 RUN yum install -y wget nginx
 
 RUN wget -P /usr/share/nginx/html https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-3.26.1-02-unix.tar.gz
+
+docker pull tswm2011/nexus-download:v1
+docker tag tswm2011/nexus-download:latest tswm2011/nexus-download:v1
+#http
+EXPOSE 80           
+ 
+#https
+EXPOSE 443              
+ 
+CMD ["nginx", "-g", "daemon off;"]
